@@ -2,21 +2,22 @@
     "name": "app",
     "private": true,
     "devDependencies": {
-        "bootstrap": "^5.2.0",
-        "bootstrap-icons": "^1.9.1",
+        "autoprefixer": "^10.6.1",
         "esbuild": "^0.28.2",
-        "sass": "^1.54.0"
+        "postcss": "^8.5.31",
+        "sass": "^1.54.0",
+        "tailwindcss": "^4.3.3"
     },
     "scripts": {
         "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
-        "build:css:compile": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
         "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css",
-        "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules --quiet-deps",
+        "build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
         "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\""
     },
     "dependencies": {
         "@hotwired/stimulus": "^3.2.2",
-        "@hotwired/turbo-rails": "^8.0.23"
+        "@hotwired/turbo-rails": "^8.0.23",
+        "@tailwindcss/cli": "^4.3.3"
     },
     "browserslist": [
         "defaults"
