@@ -280,3 +280,6 @@ ReactやNext.jsなどの技術にも関心はありますが、MVPではRailsを
 
 ## 11. 画面遷移図
 こちら：https://www.figma.com/design/NodH8z09w8N5XW4qnLraoa/%E6%97%85%E5%B8%96_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&p=f&t=Oj8pU3GS1kS8aOlb-0
+
+## 12. ER図
+こちら(Gyazo)：https://gyazo.com/9596d906d48eff2201cda8dd2fea81c9
