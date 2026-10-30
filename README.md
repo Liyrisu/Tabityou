@@ -279,4 +279,11 @@ Railsとの連携方法が用意されているため、画像を扱う機能を
 ReactやNext.jsなどの技術にも関心はありますが、MVPではRailsを中心とした構成を優先します。基本機能を完成させたうえで、必要性に応じて新しい技術の導入を検討します。
 
 ## 11. 画面遷移図
+
 こちら：https://www.figma.com/design/NodH8z09w8N5XW4qnLraoa/%E6%97%85%E5%B8%96_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&p=f&t=Oj8pU3GS1kS8aOlb-0
+
+## 12. ER図
+
+こちら(Gyazo)：https://i.gyazo.com/a1bc48ca2b4cf744a0c710c1675d841e.png
+
+補足：写真アップロード昨日はcarrierwaveを利用し、実装予定です。
