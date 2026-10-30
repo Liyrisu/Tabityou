@@ -284,4 +284,6 @@ ReactやNext.jsなどの技術にも関心はありますが、MVPではRailsを
 
 ## 12. ER図
 
-こちら(Gyazo)：https://i.gyazo.com/a907836a4f4ebe104ac37a489f9ff95e.png
+こちら(Gyazo)：https://i.gyazo.com/a1bc48ca2b4cf744a0c710c1675d841e.png
+
+補足：写真アップロード昨日はcarrierwaveを利用し、実装予定です。
