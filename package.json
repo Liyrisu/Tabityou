@@ -12,7 +12,7 @@
         "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
         "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css",
         "build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
-        "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\""
+        "watch:css": "nodemon --watch ./app/assets/stylesheets/ --watch ./tailwind.config.js --ext css,js --exec \"npm run build:css\""
     },
     "dependencies": {
         "@hotwired/stimulus": "^3.2.2",

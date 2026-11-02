@@ -1,0 +1,12 @@
+<header class="w-full h-[80px] px-[130px] flex items-center justify-between bg-tabi-bg border-b border-gray-200">
+  <!-- 左側：ロゴ -->
+  <%= link_to root_path, class: "flex items-center" do %>
+    <%= image_tag 'logo.png', alt: "ロゴ", class: "h-[50px] w-auto object-cover" %>
+  <% end %>
+
+  <!-- 右側：マイページアイコン -->
+  <%= link_to '/', class: "flex items-center justify-center hover:text-gray-900" do %>
+    <!-- ここにマイページアイコン画像やテキスト -->
+    <%= image_tag 'myPageIcon.png', alt: "マイページ", class: "h-[40px] w-auto" %>
+  <% end %>
+</header>

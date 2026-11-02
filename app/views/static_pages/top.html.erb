@@ -1,5 +1,16 @@
-<div class='top-wrapper'>
-  <div class='top-inner-text'>
-    <h1>Tabityou</h1>
-  </div>
+<%# トップページ %>
+<!-- bg-tabi-surface : 背景が#FFFFFF-->
+<div class="p-10 flex flex-col justify-center space-y-6 bg-tabi-surface">
+  
+  <%= link_to new_user_path do %>
+    <button type="submit" class="w-full py-3 rounded-xl bg-tabi-primary hover:bg-tabi-primaryDark text-white text-sm font-medium font-serif shadow-md transition cursor-pointer">
+      新規会員登録
+    </button>
+  <% end %>
+
+  <%= link_to login_path do %>
+    <button type="submit" class="w-full py-3 rounded-xl bg-tabi-primary hover:bg-tabi-primaryDark text-white text-sm font-medium font-serif shadow-md transition cursor-pointer">
+      ログイン
+    </button>
+  <% end %>
 </div>

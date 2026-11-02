@@ -1,0 +1,20 @@
+ja:
+    attributes:
+        id: ID
+        created_at: 作成日時
+        updated_at: 更新日時
+    activerecord:
+        models:
+            user: ユーザー
+            diary: 記録
+            comment: コメント
+        attributes:
+            user:
+                email: メールアドレス
+                name: 名前
+                password: パスワード
+                password_confirmation: パスワード確認
+            diary:
+                diary_image: 写真
+                user: 作成者
+                comment: コメント
