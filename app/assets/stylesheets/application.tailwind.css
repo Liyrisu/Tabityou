@@ -13,9 +13,9 @@
     --color-tabi-secondary-subtle: #e8ece0; /* 薄セージ */
     --color-tabi-accent: #c85a32; /* 茜色・テラコッタ */
     --color-tabi-accent-dark: #a64624;
-    --color-tabi-text-main: #283618; /* 本文用ダークオリーブグリーン */
+    --color-tabi-text-main: #2c2c2c; /* 本文用グレー */
     --color-tabi-text-muted: #6b705c; /* 補助テキスト */
-    --color-tabi-border: #ded7c8; /* 罫線 */
+    --color-tabi-border: #9c9f9e; /* 罫線 */
     --color-tabi-border-light: #ece5d8;
 
     /* --------------------------------------------------------------------------
