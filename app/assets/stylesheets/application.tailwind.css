@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+@theme {
+    /* --------------------------------------------------------------------------
+   * カラー設定 (tabi-*)
+   * -------------------------------------------------------------------------- */
+    --color-tabi-bg: #f8e8c9; /* 生成り・エクリュ背景 */
+    --color-tabi-surface: #ffffff; /* カード・パネル背景 */
+    --color-tabi-subtle: #faf6ed; /* サブサーフェス */
+    --color-tabi-primary: #606c38; /* 深みのあるオリーブ・モスグリーン */
+    --color-tabi-primary-dark: #4a532b; /* ホバー時濃色 */
+    --color-tabi-secondary: #a3b18a; /* セージグリーン */
+    --color-tabi-secondary-subtle: #e8ece0; /* 薄セージ */
+    --color-tabi-accent: #c85a32; /* 茜色・テラコッタ */
+    --color-tabi-accent-dark: #a64624;
+    --color-tabi-text-main: #2c2c2c; /* 本文用グレー */
+    --color-tabi-text-muted: #6b705c; /* 補助テキスト */
+    --color-tabi-border: #9c9f9e; /* 罫線 */
+    --color-tabi-border-light: #ece5d8;
+
+    /* --------------------------------------------------------------------------
+   * フォント設定 (font-sans / font-serif)
+   * -------------------------------------------------------------------------- */
+    /* --font-* を定義すると、自動的にデフォルトフォントがフォールバック（後方互換）として結合される */
+    --font-sans: "Noto Sans JP";
+    --font-serif: "Newsreader", "Noto Serif JP";
+}
