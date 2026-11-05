@@ -43,14 +43,14 @@ gem "thruster", require: false
 gem "image_processing", "~> 1.2"
 
 # 写真アップロード
-gem 'carrierwave', '~> 3.1'
+gem "carrierwave", "~> 3.1"
 
 # ページネーション
-gem 'kaminari'
-gem 'kaminari-tailwind'
+gem "kaminari"
+gem "kaminari-tailwind"
 
 # 検索フォーム
-gem 'ransack'
+gem "ransack"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
