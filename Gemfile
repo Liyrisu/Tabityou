@@ -46,7 +46,7 @@ gem "image_processing", "~> 1.2"
 gem 'carrierwave', '~> 3.1'
 
 # ページネーション
-gem 'kaminari', '1.2'
+gem 'kaminari'
 gem 'kaminari-tailwind'
 
 # 検索フォーム
