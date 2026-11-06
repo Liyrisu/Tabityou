@@ -88,20 +88,26 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-    primary: &primary_production
-        <<: *default
-        database: myapp_production
-        username: myapp
-        password: <%= ENV["MYAPP_DATABASE_PASSWORD"] %>
+    primary:
+        adapter: postgresql
+        encoding: unicode
+        url: <%= ENV['DATABASE_URL'] %>
+        max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
     cache:
-        <<: *primary_production
-        database: myapp_production_cache
+        adapter: postgresql
+        encoding: unicode
+        url: <%= ENV['DATABASE_URL'] %>
+        max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
         migrations_paths: db/cache_migrate
     queue:
-        <<: *primary_production
-        database: myapp_production_queue
+        adapter: postgresql
+        encoding: unicode
+        url: <%= ENV['DATABASE_URL'] %>
+        max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
         migrations_paths: db/queue_migrate
     cable:
-        <<: *primary_production
-        database: myapp_production_cable
+        adapter: postgresql
+        encoding: unicode
+        url: <%= ENV['DATABASE_URL'] %>
+        max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
         migrations_paths: db/cable_migrate
