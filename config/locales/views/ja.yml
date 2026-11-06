@@ -43,3 +43,12 @@ ja:
         create:
             success: ユーザー登録が完了しました
             failure: ユーザー登録に失敗しました
+    diaries:
+        new:
+            title: 記録作成
+        show:
+            title: 記録詳細
+        index:
+            title: 記録一覧
+        edit:
+            title: 記録編集
