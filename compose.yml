@@ -26,6 +26,9 @@ services: # コンテナの定義開始
         # - サーバープロセスIDファイルの削除
         # - 開発サーバーの起動
 
+        env_file:
+            - .env
+
         tty: true # 疑似ターミナルを割り当て
         stdin_open: true # 標準入力を保持
         volumes: # ボリュームマウントの設定

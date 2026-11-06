@@ -4,8 +4,8 @@ class CreateDiaries < ActiveRecord::Migration[8.1]
       t.date :date, null: false
       t.string :location, null: false
       t.string :image
-      t.text :body
-      
+      t.text :comment
+
       t.references :user, foreign_key: true
 
       t.timestamps
