@@ -1,5 +1,56 @@
-<% content_for(:title, t('.title')) %>
+<div class="flex min-h-screen bg-gray-50">
+  
+  <!-- 左側：サイドバーメニュー（この画面限定） -->
+  <aside class="w-64 bg-white border-r border-gray-200 p-4 flex flex-col gap-3 shrink-0">
+    
+    <!-- 記録する ボタン -->
+    <%= link_to new_diary_path, class: "flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-xl text-gray-700 font-medium hover:bg-gray-50 transition-colors" do %>
+      <%= image_tag "icon_newDiary.png", class: "w-5 h-5 object-contain" %>
+      <span>記録する</span>
+    <% end %>
 
-<div class="col-span-full text-gray-500 mb-3 text-center py-12 bg-white rounded-lg shadow-sm border border-gray-100">
-  掲示板がありません
+    <hr class="border-gray-200 my-1">
+
+    <!-- 記録一覧 ボタン（アクティブ状態） -->
+    <%= link_to diaries_path, class: "flex items-center justify-center gap-2 px-4 py-3 bg-tabi-primary text-white rounded-xl font-medium hover:bg-zinc-700 transition-colors" do %>
+      <%= image_tag "icon_diaries.png", class: "w-5 h-5 object-contain" %>
+      <span>記録一覧</span>
+    <% end %>
+
+    <!-- 計画一覧 ボタン -->
+    <%= link_to plans_path, class: "flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-xl text-gray-700 font-medium hover:bg-gray-50 transition-colors" do %>
+      <%= image_tag "icon_plans.png", class: "w-5 h-5 object-contain" %>
+      <span>計画一覧</span>
+    <% end %>
+
+  </aside>
+
+  <!-- 右側：メインコンテンツ表示エリア -->
+  <main class="flex-1 p-8 overflow-y-auto">
+    
+    <!-- 1. 検索フォーム（元々あった部分） -->
+    <div class="mb-6">
+      <%= render 'search_form', q: @q, url: diaries_path %>
+    </div>
+
+    <!-- 2. 日記一覧のグリッド（元々あった部分） -->
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <% if @diaries.present? %>
+        <%= render @diaries %>
+      <% else %>
+        <div class="col-span-full text-gray-500 mb-3 text-center py-12 bg-white rounded-lg shadow-sm border border-gray-100">
+          掲示板がありません
+        </div>
+      <% end %>
+    </div>
+
+    <!-- 3. ページネーション（もしあれば） -->
+    <% if respond_to?(:paginate) %>
+      <div class="mt-8">
+        <%= paginate @diaries %>
+      </div>
+    <% end %>
+
+  </main>
+
 </div>

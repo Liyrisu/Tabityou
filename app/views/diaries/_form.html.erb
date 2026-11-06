@@ -1,0 +1,92 @@
+<%= form_with model: diary, class: "space-y-6" do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <!-- 画像アップロード（プレビュー対応・カード風デザイン） -->
+  <div class="flex flex-col items-center justify-center border-2 border-dashed border-gray-200 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors relative group min-h-[220px] overflow-hidden">
+    
+    <!-- 1. 新しく選択した、または既存の画像のプレビューを表示するエリア -->
+    <div id="image-preview-container" class="<%= diary.image.present? ? '' : 'hidden' %> absolute inset-0 w-full h-full bg-white z-10">
+      <img id="image-preview" src="<%= diary.image.url if diary.image.present? %>" class="w-full h-full object-cover">
+      <!-- 画像をクリア（変更）したいときのヒント（ホバー時に薄くレイアウト） -->
+      <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+        <span class="text-white text-xs bg-zinc-900/80 px-3 py-1.5 rounded-full font-medium">画像を変更する</span>
+      </div>
+    </div>
+
+    <!-- 2. 初期状態のプレビュー未選択時の表示（文字とアイコン） -->
+    <div id="image-placeholder" class="<%= diary.image.present? ? 'hidden' : 'space-y-2' %> text-center pointer-events-none">
+      <svg class="mx-auto h-8 w-8 text-gray-400 group-hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+      </svg>
+      <div class="text-sm font-medium text-gray-600">写真を追加</div>
+    </div>
+
+    <!-- 3. 実際のファイルフィールド（透明にして最前面に重ねる。z-20でイベントを奪う） -->
+    <%= f.file_field :image, 
+        id: "diary-image-input",
+        class: "absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20", 
+        accept: 'image/*' %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+
+  <!-- 日付入力 -->
+  <div>
+    <%= f.label :date, "日付", class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.date_field :date, 
+        class: "block w-48 rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5 text-gray-950 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors" %>
+  </div>
+
+  <!-- 位置情報入力 -->
+  <div>
+    <%= f.label :location, "場所", class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.text_field :location, 
+        placeholder: "場所を入力...",
+        class: "block w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5 text-gray-950 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors" %>
+  </div>
+
+  <!-- コメント（本文入力） -->
+  <div>
+    <%= f.label :comment, "コメント", class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.text_area :comment, 
+        placeholder: "コメントを入力...",
+        class: "block w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5 text-gray-950 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors", 
+        rows: "4" %>
+  </div>
+
+  <!-- 送信ボタン -->
+  <div class="pt-4">
+    <%= f.submit "登録する", 
+        class: "w-full py-3 text-sm font-bold text-white bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-900 rounded-lg shadow-sm transition-colors cursor-pointer block text-center" %>
+  </div>
+<% end %>
+
+<!-- プレビュー動作用のJavaScript（TurboDrive環境でも問題なく動くようにハンドリング） -->
+<script>
+  (function() {
+    const initPreview = () => {
+      const input = document.getElementById('diary-image-input');
+      const preview = document.getElementById('image-preview');
+      const container = document.getElementById('image-preview-container');
+      const placeholder = document.getElementById('image-placeholder');
+
+      if (!input) return;
+
+      input.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            preview.src = e.target.result;
+            container.classList.remove('hidden');
+            placeholder.classList.add('hidden');
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+    };
+
+    // 通常の読み込みとTurboの遷移両方に対応
+    document.addEventListener('DOMContentLoaded', initPreview);
+    document.addEventListener('turbo:load', initPreview);
+  })();
+</script>
