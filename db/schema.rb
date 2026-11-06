@@ -18,7 +18,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_29_083631) do
     t.date "date", null: false
     t.string "location", null: false
     t.string "image"
-    t.text "body"
+    t.text "comment"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_29_083631) do
     t.date "date", null: false
     t.string "location", null: false
     t.string "image"
-    t.text "body"
+    t.text "comment"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
