@@ -8,4 +8,8 @@ class User < ApplicationRecord
 
   has_many :diaries, dependent: :destroy
   has_many :plans, dependent: :destroy
+
+  def own?(object)
+    id == object&.user_id
+  end
 end
