@@ -1,0 +1,74 @@
+<% content_for(:title, t('.title')) %>
+
+<div class="max-w-[800px] mx-auto px-4 py-8">
+  <!-- 上部アクションエリア：「一覧に戻る」と「編集・削除」 -->
+  <div class="flex items-center justify-between mb-4">
+    <%= link_to diaries_path, class: "px-4 py-2 border border-tabi-border rounded-xl text-tabi-text-main font-medium hover:bg-gray-50 transition-colors flex items-center gap-1 text-sm" do %>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+      </svg>
+      一覧へ戻る
+    <% end %>
+
+    <% if current_user.own?(@diary) %>
+      <div class="flex items-center gap-2">
+        <!-- 編集ボタン -->
+        <%= link_to edit_diary_path(@diary), id: "button-edit-#{@diary.id}", class: "flex items-center gap-1.5 px-4 py-2 bg-tabi-primary text-white rounded-xl text-sm font-medium hover:bg-tabi-primary-dark transition-colors" do %>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+          </svg>
+          編集
+        <% end %>
+        <!-- 削除ボタン -->
+        <%= link_to '/', class: "flex items-center gap-1.5 px-4 py-2 bg-tabi-secondary text-tabi-text-main border border-emerald-200 rounded-xl text-sm font-medium hover:tabi-secondary-dark transition-colors" do %>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+          </svg>
+          削除
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- メインコンテンツカード -->
+  <article class="bg-white p-8 sm:p-12 rounded-xl border border-tabi-border shadow-sm flex flex-col gap-6">
+    
+    <!-- 写真 -->
+    <div class="w-full bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center min-h-[300px] max-h-[450px]">
+      <% if @diary.image.present? %>
+        <%= image_tag @diary.image.url, class: "w-full h-full object-contain" %>
+      <% else %>
+        <!-- 画像がない場合 -->
+        <div class="flex flex-col items-center gap-2 text-gray-400 py-12">
+          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <span class="text-sm font-medium">写真</span>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- 日付と場所の横並びエリア -->
+    <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+      <!-- 日付（左） -->
+      <div class="text-gray-500 font-medium">
+        <%= @diary.date.strftime("%Y.%m.%d") if @diary.date %>
+      </div>
+
+      <!-- 場所 -->
+      <div class="flex items-center gap-1.5 px-4 py-2 bg-tabi-secondary text-tabi-text-main border border-emerald-100 rounded-xl text-sm font-medium">
+        <svg class="w-4 h-4 text-tabi-text-main" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        <%= @diary.location %>
+      </div>
+    </div>
+
+    <!-- コメント -->
+    <div class="p-5 border border-tabi-border rounded-xl bg-white min-h-[120px]">
+      <p class="text-tabi-text-main text-sm sm:text-base leading-relaxed whitespace-pre-wrap"><%= @diary.comment %></p>
+    </div>
+
+  </article>
+</div>
