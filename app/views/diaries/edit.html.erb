@@ -1,0 +1,21 @@
+<% content_for(:title, t('.title')) %>
+
+<div class="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- 「一覧へ戻る」ボタン（左上・インラインブロック） -->
+    <div class="mb-8">
+      <%= link_to diaries_path, class: "inline-flex items-center gap-1 px-3 py-1.5 border border-tabi-border rounded-lg text-tabi-text-main bg-white hover:bg-gray-50 transition-colors text-sm font-medium" do %>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        一覧へ戻る
+      <% end %>
+    </div>
+  
+  <!-- 外側の白枠カード -->
+  <div class="bg-white p-6 sm:p-10 rounded-xl border border-tabi-border">
+
+    <!-- フォーム本体（写真、日付、場所、コメント等） -->
+    <%= render 'form', diary: @diary %>
+    
+  </div>
+</div>
