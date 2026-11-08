@@ -73,6 +73,9 @@ group :development, :test do
   gem 'rspec-rails'
   # テストデータ（ファクトリ）作成用ライブラリ
   gem 'factory_bot_rails'
+
+  # N+1問題検出ツール
+  gem "bullet"
 end
 
 group :development do
