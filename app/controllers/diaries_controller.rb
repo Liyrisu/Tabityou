@@ -2,7 +2,7 @@ class DiariesController < ApplicationController
   def index
     # 記録一覧機能: ログインユーザーが所有する記録だけを一覧・検索対象にする
     @q = current_user.diaries.ransack(params[:q])
-    @diaries = @q.result(distinct: true).includes(:user).page(params[:page]).order(created_at: :desc)
+    @diaries = @q.result(distinct: true).page(params[:page]).order(created_at: :desc)
   end
 
   def new
