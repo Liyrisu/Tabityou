@@ -54,9 +54,8 @@ Rails.application.configure do
   config.after_initialize do
     Bullet.enable = true
     Bullet.bullet_logger = true # log/bullet.log に結果を出力する
-    
-    # 【超おすすめ】N+1を検知したらテストを強制的に落とす設定
-    Bullet.raise = true 
-  end
 
+    # 【超おすすめ】N+1を検知したらテストを強制的に落とす設定
+    Bullet.raise = true
+  end
 end

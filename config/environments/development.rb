@@ -81,5 +81,4 @@ Rails.application.configure do
     Bullet.alert = true # ブラウザのポップアップで通知
     Bullet.bullet_logger = true # 独自のログファイルに出力
   end
-
 end
