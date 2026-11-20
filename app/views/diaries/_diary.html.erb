@@ -1,13 +1,13 @@
 <%= link_to diary_path(diary), class: "p-6 bg-white rounded-lg shadow-sm border border-tabi-border flex flex-col justify-between hover:shadow-md hover:border-tabi-border transition-all block group" do %>
   <div>
-    <!-- 日記の日付 (date) -->
-    <div class="text-sm font-semibold text-blue-600 mb-1">
+    <!-- 日付 (date) -->
+    <div class="text-sm font-semibold text-tabi-primary mb-1">
       <%= diary.date.strftime("%Y/%m/%d") if diary.date %>
     </div>
 
-    <!-- 位置情報 (location) -->
+    <!-- 場所 (location) -->
     <div class="flex items-center text-xs text-gray-500 mb-3">
-      <svg class="w-4 h-4 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="w-4 h-4 mr-1 tabi-text-main" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
       </svg>
@@ -16,14 +16,13 @@
 
     <!-- アップロードされた画像がある場合 (image) -->
     <% if diary.image.present? %>
-      <div class="mb-3 overflow-hidden rounded-lg">
+      <div class="mb-3 overflow-hidden rounded-lg group-hover:opacity-90 transition-opacity">
         <%= image_tag diary.image.url, class: "w-full h-48 object-cover" %>
       </div>
     <% end %>
 
     <!-- 本文 (comment) -->
-    <p class="text-gray-700 text-sm whitespace-pre-wrap"><%= diary.comment %></p>
+    <p class="tabi-text-main text-sm whitespace-pre-wrap"><%= diary.comment %></p>
   </div>
 
-  <!-- 投稿者などの関連情報を出す場合はここに追加できます -->
-</div>
+<% end %>
