@@ -70,9 +70,9 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   # RSpec本体とRails用の統合ライブラリ
-  gem 'rspec-rails'
+  gem "rspec-rails"
   # テストデータ（ファクトリ）作成用ライブラリ
-  gem 'factory_bot_rails'
+  gem "factory_bot_rails"
 
   # N+1問題検出ツール
   gem "bullet"
