@@ -15,6 +15,6 @@ class Diary < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    [] 
+    []
   end
 end
