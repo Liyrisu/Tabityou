@@ -75,6 +75,17 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+
+      - name: Build assets
+        run: |
+          npm install
+          npm run build
+          npm run build:css
+
       - name: Run RSpec tests
         env:
           RAILS_ENV: test
