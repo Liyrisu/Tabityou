@@ -3,3 +3,4 @@ ja:
         messages:
             blank: "を入力してください"
             too_short: "は%{count}文字以上で入力してください"
+            taken: "このメールアドレスは使用できません。"
