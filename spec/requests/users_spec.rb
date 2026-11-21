@@ -30,7 +30,65 @@ RSpec.describe "ユーザー登録・ログイン機能", type: :request do
         }
       }.not_to change(User, :count)
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
+    end
+
+    it "登録済みのメールアドレスは使用できない旨を日本語で表示する" do
+      create(:user, email: "existing@example.com")
+
+      expect {
+        post users_path, params: {
+          user: {
+            name: "新規ユーザー",
+            email: "existing@example.com",
+            password: "password123",
+            password_confirmation: "password123"
+          }
+        }
+      }.not_to change(User, :count)
+
+      expect(response).to have_http_status(:unprocessable_content)
+      expect(response.body).to include("このメールアドレスは使用できません。")
+      expect(response.body).not_to include("has already been taken")
+    end
+
+    it "メールアドレスが空なら項目名付きの必須エラーを表示する" do
+      expect {
+        post users_path, params: {
+          user: {
+            name: "新規ユーザー",
+            email: "",
+            password: "password123",
+            password_confirmation: "password123"
+          }
+        }
+      }.not_to change(User, :count)
+
+      expect(response).to have_http_status(:unprocessable_content)
+      expect(response.body).to include("メールアドレス を入力してください")
+    end
+
+    it "複数の入力エラーを名前、メールアドレス、パスワードの順に表示する" do
+      post users_path, params: {
+        user: {
+          name: "",
+          email: "",
+          password: "",
+          password_confirmation: ""
+        }
+      }
+
+      expect(response).to have_http_status(:unprocessable_content)
+      messages = [
+        "名前 を入力してください",
+        "メールアドレス を入力してください",
+        "パスワード を入力してください",
+        "パスワード は8文字以上で入力してください"
+      ]
+      positions = messages.map { |message| response.body.index(message) }
+
+      expect(positions).not_to include(nil)
+      expect(positions.compact).to eq(positions.compact.sort)
     end
   end
 
@@ -48,7 +106,7 @@ RSpec.describe "ユーザー登録・ログイン機能", type: :request do
     it "誤った認証情報ならログインを拒否する" do
       post login_path, params: { email: user.email, password: "wrong-password" }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(session[:user_id]).to be_nil
     end
   end
