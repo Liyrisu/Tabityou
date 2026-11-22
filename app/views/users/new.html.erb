@@ -7,7 +7,7 @@
   <h1 class="text-3xl font-bold text-gray-900 mb-8 text-center"><%= t('.title') %></h1>
   
   <%= form_with model: @user, class: "space-y-6" do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
+    <%= render 'shared/error_messages', object: f.object, attribute_order: %i[name email password] %>
     
     <%# 名前 %>
     <div>
