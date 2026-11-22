@@ -30,7 +30,7 @@ RSpec.describe "ユーザー登録・ログイン機能", type: :request do
         }
       }.not_to change(User, :count)
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
     end
   end
 
@@ -76,7 +76,7 @@ RSpec.describe "ユーザー登録・ログイン機能", type: :request do
     it "誤った認証情報ならログインを拒否する" do
       post login_path, params: { email: user.email, password: "wrong-password" }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(session[:user_id]).to be_nil
     end
   end

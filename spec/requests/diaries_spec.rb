@@ -72,7 +72,7 @@ RSpec.describe "記録（Diary）機能", type: :request do
         post diaries_path, params: { diary: { date: nil, location: "", comment: "" } }
       }.not_to change(Diary, :count)
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
     end
   end
 
@@ -106,7 +106,7 @@ RSpec.describe "記録（Diary）機能", type: :request do
 
       patch diary_path(diary), params: { diary: { location: "", comment: "", date: nil } }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(diary.reload.location).to eq("東京")
     end
 

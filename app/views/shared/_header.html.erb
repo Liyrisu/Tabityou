@@ -10,7 +10,7 @@
     <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class: "text-gray-600 hover:text-gray-900 text-sm font-medium" %>
 
     <!-- マイページアイコン -->
-    <%= link_to '#', class: "flex items-center justify-center hover:text-gray-900" do %>
+    <%= link_to diaries_path, class: "flex items-center justify-center hover:text-gray-900" do %>
       <%= image_tag 'myPageIcon.png', alt: "マイページ", class: "h-[40px] w-auto" %>
     <% end %>
   </div>
