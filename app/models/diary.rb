@@ -2,6 +2,7 @@ class Diary < ApplicationRecord
   validates :comment, presence: true, length: { maximum: 65_535 }
   validates :location, presence: true, length: { maximum: 255 }
   validates :date, presence: true
+  validates :image, presence: { message: "写真を登録してください" }
 
   belongs_to :user
   belongs_to :plan, optional: true

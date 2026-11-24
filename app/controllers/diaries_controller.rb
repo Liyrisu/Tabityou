@@ -15,7 +15,7 @@ class DiariesController < ApplicationController
       redirect_to diaries_path, success: t("defaults.flash_message.created", item: Diary.model_name.human)
     else
       flash.now[:danger] = t("defaults.flash_message.not_created", item: Diary.model_name.human)
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -33,7 +33,7 @@ class DiariesController < ApplicationController
       redirect_to diary_path(@diary), success: t("defaults.flash_message.updated", item: Diary.model_name.human)
     else
       flash.now[:danger] = t("defaults.flash_message.not_updated", item: Diary.model_name.human)
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
