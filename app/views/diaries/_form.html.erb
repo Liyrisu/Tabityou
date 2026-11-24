@@ -1,5 +1,5 @@
 <%= form_with model: diary, class: "space-y-6" do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+  <%= render 'shared/error_messages', object: f.object, attribute_order: %i[image date location comment] %>
 
   <!-- 画像アップロード -->
   <div class="w-full bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center min-h-[300px] max-h-[450px] relative group border border-tabi-border">

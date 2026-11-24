@@ -15,8 +15,10 @@ ja:
                 password: パスワード
                 password_confirmation: パスワード確認
             diary:
-                diary_image: 写真
+                image: 写真
                 user: 作成者
+                date: 日付
+                location: 場所
                 comment: コメント
         errors:
             messages:

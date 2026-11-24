@@ -59,7 +59,12 @@ RSpec.describe "記録（Diary）機能", type: :request do
     it "有効な入力なら記録を作成して一覧へ遷移する" do
       expect {
         post diaries_path, params: {
-          diary: { date: Date.current, location: "大阪", comment: "大阪旅行" }
+          diary: {
+            date: Date.current,
+            location: "大阪",
+            comment: "大阪旅行",
+            image: Rack::Test::UploadedFile.new(Rails.root.join("public/icon.png"), "image/png")
+          }
         }
       }.to change(Diary, :count).by(1)
 
@@ -73,6 +78,21 @@ RSpec.describe "記録（Diary）機能", type: :request do
       }.not_to change(Diary, :count)
 
       expect(response).to have_http_status(:unprocessable_content)
+      expect(response.body).to include("写真を登録してください")
+      expect(response.body).to include("日付 を入力してください")
+      expect(response.body).to include("場所 を入力してください")
+      expect(response.body).to include("コメント を入力してください")
+
+      messages = [
+        "写真を登録してください",
+        "日付 を入力してください",
+        "場所 を入力してください",
+        "コメント を入力してください"
+      ]
+      positions = messages.map { |message| response.body.index(message) }
+
+      expect(positions).not_to include(nil)
+      expect(positions.compact).to eq(positions.compact.sort)
     end
   end
 

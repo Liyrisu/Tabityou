@@ -7,7 +7,7 @@
     <%# リストにポチ（list-disc）をつける /行間（space-y-1）を少し空ける %>
     <ul class="list-disc list-inside text-sm space-y-1 font-medium pl-1">
       <% errors.each do |error| %>
-        <li><%= error.attribute == :email && error.type == :taken ? error.message : error.full_message %></li>
+        <li><%= (error.attribute == :email && error.type == :taken) || (error.attribute == :image && error.type == :blank) ? error.message : error.full_message %></li>
       <% end %>
     </ul>
     

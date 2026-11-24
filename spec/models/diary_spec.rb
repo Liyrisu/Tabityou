@@ -24,5 +24,11 @@ RSpec.describe Diary, type: :model do
       expect(diary).not_to be_valid
       expect(diary.errors[:date]).to be_present
     end
+
+    it "写真が空なら記録を作成できない" do
+      diary = build(:diary, image: nil)
+      expect(diary).not_to be_valid
+      expect(diary.errors[:image]).to include("写真を登録してください")
+    end
   end
 end
